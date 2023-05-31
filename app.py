@@ -1,12 +1,7 @@
-from flask import Flask
 from redis import Redis
-import psycopg2
-from flask_restx import Resource, Api
 from ma import ma
 from db import db
 import connexion
-
-
 
 redis = Redis(host='redis', port=6379)
 #conn = psycopg2.connect(database="user",
@@ -51,6 +46,5 @@ if __name__ == "__main__":
         db.create_all()
 
     app.run(host="0.0.0.0", port=3002, debug=True)
-    
-
+   
 

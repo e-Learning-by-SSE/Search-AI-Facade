@@ -1,123 +1,96 @@
 openapi: 3.0.3
 info:
-  title: User Service
-  description: User Service using Flask, OpenAPI and Connexion
+  title: SEARCH Gateway Service
+  description: SEARCH Gateway Service using Flask, OpenAPI and Connexion
   version: "1.0.0"
 servers:
   - url: http://localhost:8000
-    description: Rest Server showing Swagger and Connexion capability
+    description: Rest Server for SEARCH-AI-Gateway
 paths:
-  /user:
+  /skill/{id}:
     get:
-      operationId: user.getAll
+      operationId: sse_gateway.getSkill
       tags:
-        - User
-      summary: Returns a list of users.
-      description: Returns a list of users.
+        - SSE Services
+      summary: Return an skill with given ID
+      description: Return an skill with given ID
+      parameters:
+        - name: id
+          in: path
+          description: skill ID
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         "200": # status code
-          description: Return the entire list of users.
+          description: Return an skill with given ID
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
-    post:
-      operationId: user.create
-      tags:
-        - User
-      summary: Create a new user
-      description: Create a new user
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        "201":
-          description: user Created successfully
-  /user/{id}:
+                $ref: '#/components/schemas/SkillDto'
+  /learningUnits/showAllLearningUnits:
     get:
-      operationId: user.get
+      operationId: sse_gateway.getAllLU
       tags:
-        - User
-      summary: Return an user with given ID
-      description: Return an user with given ID
-      parameters:
-        - name: id
-          in: path
-          description: user ID
-          required: true
-          schema:
-            type: integer
-            format: int64
+        - SSE Services
+      summary: Lists all learningUnits.
+      description: Lists all learningUnits.
       responses:
         "200": # status code
-          description: Return an user with given ID
+          description: Return an skill with given ID
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
-    delete:
-      operationId: user.delete
+                $ref: '#/components/schemas/SkillDto'
+  /upstream/test_upstream:
+    get:
+      operationId: l3s_gateway.testUP
       tags:
-        - User
-      summary: Delete an user with given ID
-      description: Delete an user with given ID
-      parameters:
-        - name: id
-          in: path
-          description: user ID
-          required: true
-          schema:
-            type: integer
-            format: int64
+        - L3S Services
+      summary: Test of UpStreamService.
+      description: Test of UpStreamService.
       responses:
         "200": # status code
-          description: Deleted an user with given ID
+          description: Return an skill with given ID
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
-    put:
-      operationId: user.update
+                $ref: '#/components/schemas/SkillDto'
+  /downstream/test_downstream:
+    get:
+      operationId: l3s_gateway.testDown
       tags:
-        - User
-      summary: Update an user with given ID
-      description: Update an user with given ID
-      parameters:
-        - name: id
-          in: path
-          description: user ID
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
+        - L3S Services
+      summary: Test of DownService.
+      description: Test of DownService.
       responses:
         "200": # status code
-          description: Updated an user with given ID
+          description: Return an skill with given ID
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: '#/components/schemas/SkillDto'                            
 
 components:
   schemas:
-    User:
+     SkillDto:
       type: object
       properties:
         id:
-          type: integer
-          format: int64
+          type: string
+        nestedSkills:
+          type: array
+          items:
+            type: string
         name:
           type: string
-        skill_id: 
-          type: integer
-          format: int64    
-        learningProfile_id:
-          type: integer
-          format: int64    
+        level:
+          type: number
+        description:
+          type: string
+      required:
+        - id
+        - nestedSkills
+        - name
+        - level

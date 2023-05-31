@@ -23,3 +23,5 @@ services:
         depends_on:
             - redis
             - db
+        environment:
+            - PYTHONUNBUFFERED=1
