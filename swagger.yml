@@ -74,7 +74,85 @@ paths:
 
 components:
   schemas:
-     SkillDto:
+    SkillRepositorySearchDto:
+      type: object
+      properties:
+        pageSize:
+          type: number
+        page:
+          type: number
+        name:
+          type: string
+        version:
+          type: string
+        owner:
+          type: string
+    SkillRepositoryDto:
+      type: object
+      properties:
+        ownerId:
+          type: string
+        id:
+          type: string
+        taxonomy:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+      required:
+        - ownerId
+        - id
+        - name
+    SkillRepositoryListDto:
+      type: object
+      properties:
+        repositories:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillRepositoryDto'
+      required:
+        - repositories
+    UnresolvedSkillRepositoryDto:
+      type: object
+      properties:
+        ownerId:
+          type: string
+        id:
+          type: string
+        taxonomy:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+      required:
+        - ownerId
+        - id
+        - name
+        - skills
+    SkillSearchDto:
+      type: object
+      properties:
+        pageSize:
+          type: number
+        page:
+          type: number
+        name:
+          type: string
+        level:
+          type: number
+        skillMap:
+          type: string
+    SkillDto:
       type: object
       properties:
         id:
@@ -94,3 +172,353 @@ components:
         - nestedSkills
         - name
         - level
+    SkillListDto:
+      type: object
+      properties:
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillDto'
+      required:
+        - skills
+    ResolvedSkillDto:
+      type: object
+      properties:
+        id:
+          type: string
+        nestedSkills:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResolvedSkillDto'
+        name:
+          type: string
+        level:
+          type: number
+        description:
+          type: string
+      required:
+        - id
+        - nestedSkills
+        - name
+        - level
+    ResolvedSkillRepositoryDto:
+      type: object
+      properties:
+        id:
+          type: string
+        taxonomy:
+          type: string
+        description:
+          type: string
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResolvedSkillDto'
+        name:
+          type: string
+        version:
+          type: string
+      required:
+        - id
+        - skills
+        - name
+    ResolvedSkillListDto:
+      type: object
+      properties:
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResolvedSkillDto'
+      required:
+        - skills
+    SkillRepositoryCreationDto:
+      type: object
+      properties:
+        owner:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+      required:
+        - owner
+        - name
+    SkillCreationDto:
+      type: object
+      properties:
+        owner:
+          type: string
+          description: Used to validate that the user is the owner of the target repository.
+        name:
+          type: string
+        level:
+          type: number
+        description:
+          type: string
+        parentSkills:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillCreationDto'
+        nestedSkills:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillCreationDto'
+      required:
+        - owner
+        - name
+        - level
+        - parentSkills
+        - nestedSkills
+    NuggetCreationDto:
+      type: object
+      properties:
+        isTypeOf:
+          type: array
+          example:
+            - ANALYZE
+            - CONTENT
+            - EXAMPLE
+            - EXERCISE
+            - INTRODUCTION
+            - TEST
+          items:
+            type: string
+            enum:
+              - ANALYZE
+              - INTRODUCTION
+              - CONTENT
+              - EXAMPLE
+              - EXERCISE
+              - TEST
+        language:
+          type: string
+        processingTime:
+          type: string
+        presenter:
+          type: string
+        mediatype:
+          type: string
+      required:
+        - isTypeOf
+        - language
+        - processingTime
+    NuggetDto:
+      type: object
+      properties:
+        isTypeOf:
+          type: array
+          example:
+            - ANALYZE
+            - CONTENT
+            - EXAMPLE
+            - EXERCISE
+            - INTRODUCTION
+            - TEST
+          items:
+            type: string
+            enum:
+              - ANALYZE
+              - INTRODUCTION
+              - CONTENT
+              - EXAMPLE
+              - EXERCISE
+              - TEST
+        language:
+          type: string
+        processingTime:
+          type: string
+        presenter:
+          type: string
+        mediatype:
+          type: string
+        id:
+          type: number
+      required:
+        - isTypeOf
+        - language
+        - processingTime
+        - id
+    PathGoalDto:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        targetAudience:
+          type: string
+        description:
+          type: string
+        requirements:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResolvedSkillDto'
+        pathGoals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResolvedSkillDto'
+      required:
+        - id
+        - title
+        - requirements
+        - pathGoals
+    LearningPathDto:
+      type: object
+      properties:
+        id:
+          type: string
+        goals:
+          type: array
+          items:
+            $ref: '#/components/schemas/PathGoalDto'
+        title:
+          type: string
+        description:
+          type: string
+      required:
+        - id
+        - goals
+        - title
+    LearningPathListDto:
+      type: object
+      properties:
+        learningPaths:
+          type: array
+          items:
+            $ref: '#/components/schemas/LearningPathDto'
+      required:
+        - learningPaths
+    PathGoalCreationDto:
+      type: object
+      properties:
+        title:
+          type: string
+        targetAudience:
+          type: string
+        description:
+          type: string
+        requirements:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResolvedSkillDto'
+        pathGoals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResolvedSkillDto'
+      required:
+        - title
+        - requirements
+        - pathGoals
+    LearningPathCreationDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        goals:
+          type: array
+          items:
+            $ref: '#/components/schemas/PathGoalCreationDto'
+      required:
+        - title
+        - goals
+    SearchLearningUnitDto:
+      type: object
+      properties:
+        searchId:
+          type: number
+        teachingGoals:
+          default: []
+          type: array
+          items:
+            type: string
+        requiredSkills:
+          default: []
+          type: array
+          items:
+            type: string
+        processingTime:
+          type: string
+        rating:
+          type: string
+        contentCreator:
+          type: string
+        contentProvider:
+          type: string
+        targetAudience:
+          type: string
+        semanticDensity:
+          type: string
+        semanticGravity:
+          type: string
+        contentTags:
+          type: array
+          items:
+            type: string
+        contextTags:
+          type: array
+          items:
+            type: string
+        linkToHelpMaterial:
+          type: string
+        title:
+          type: string
+        language:
+          type: string
+        description:
+          type: string
+      required:
+        - searchId
+        - teachingGoals
+        - requiredSkills
+        - title
+        - language
+    SearchLearningUnitListDto:
+      type: object
+      properties:
+        learningUnits:
+          default: []
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchLearningUnitDto'
+      required:
+        - learningUnits
+    SearchLearningUnitCreationDto:
+      type: object
+      properties:
+        processingTime:
+          type: string
+        rating:
+          type: string
+        contentCreator:
+          type: string
+        contentProvider:
+          type: string
+        targetAudience:
+          type: string
+        semanticDensity:
+          type: string
+        semanticGravity:
+          type: string
+        contentTags:
+          type: array
+          items:
+            type: string
+        contextTags:
+          type: array
+          items:
+            type: string
+        linkToHelpMaterial:
+          type: string
+        title:
+          type: string
+        language:
+          type: string
+        description:
+          type: string
+      required:
+        - title
+        - language
