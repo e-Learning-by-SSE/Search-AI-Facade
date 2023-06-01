@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM --platform=$BUILDPLATFORM python:3.11.2-slim-buster AS builder
+FROM python:3.11.2-slim-buster AS builder
 
 WORKDIR /code
 
