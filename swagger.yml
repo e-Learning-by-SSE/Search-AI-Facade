@@ -7,6 +7,20 @@ servers:
   - url: http://localhost:8000
     description: Rest Server for SEARCH-AI-Gateway
 paths:
+  /loginLMSTest:
+    get:
+      operationId: main.main
+      tags:
+        - MLS Services
+      summary: Example Service
+      description: Example Service
+      responses:
+        "200": # status code
+          description: Example Service for Printing LOs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillDto'
   /skill/{id}:
     get:
       operationId: sse_gateway.getSkill
