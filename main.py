@@ -1,6 +1,6 @@
 
 import requests
-
+import os
 BASE_URL = "https://search.mls2.de";
 
 # URL for the Keycloak Login Server
@@ -9,11 +9,11 @@ REALM = "nws"; # One Server can have multiple Realms
 
 # The ID of the Keycloak-Client we are using and its key
 CLIENT_ID = "mls2-search";
-CLIENT_SECRET = "{CLIENT_SECRET}"; # replace with actual keycloak client secret
+CLIENT_SECRET = os.getenv('CLIENT_SECRET'); # replace with actual keycloak client secret
 
 # User Data for our user with the SEARCH-ROLE
 USERNAME = "SEARCH";
-PASSWORD = "{SEARCH_USER_PASSWORD}"
+PASSWORD = os.environ.get('SEARCH_USER_PASSWORD')
 
 LOGIN_PAYLOAD = {
   "client_id": CLIENT_ID,
