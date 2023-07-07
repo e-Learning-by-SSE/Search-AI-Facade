@@ -6,4 +6,6 @@ from __future__ import absolute_import
 from swagger_client.api.learning_path_api import LearningPathApi
 from swagger_client.api.learning_unit_api import LearningUnitApi
 from swagger_client.api.nugget_api import NuggetApi
+from swagger_client.api.path_finder_api import PathFinderApi
 from swagger_client.api.skill_api import SkillApi
+from swagger_client.api.user_api import UserApi
