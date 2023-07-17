@@ -64,7 +64,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SkillDto'
+                $ref: '#/components/schemas/UnresolvedSkillRepositoryDto'
   /skill-repositories/{ownderId}:
     get:
       operationId: sse_gateway.getRepositoryByOwner
@@ -86,7 +86,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SkillDto'           
+                $ref: '#/components/schemas/SkillRepositoryListDto'           
   /skill-repositories/create:
     post:
       operationId: sse_gateway.createRepository
@@ -120,38 +120,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SkillRepositoryCreationDto'
+              $ref: '#/components/schemas/SkillCreationDto'
       responses:
         '201':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SkillRepositoryDto'
+                $ref: '#/components/schemas/SkillDto'
       tags:
         - SSE Services   
-
-  /skill/find:
-    post:
-      operationId: sse_gateway.findSkill
-      summary: ''
-      description: find a skill for the specified values.
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SkillRepositoryCreationDto'
-      responses:
-        '201':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SkillRepositoryDto'
-      tags:
-        - SSE Services         
   /learningUnits/showAllLearningUnits:
     get:
       operationId: sse_gateway.getAllLU
@@ -165,7 +143,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SkillDto'
+                $ref: '#/components/schemas/SearchLearningUnitListDto'
   /upstream/test_upstream:
     get:
       operationId: l3s_gateway.testUP
