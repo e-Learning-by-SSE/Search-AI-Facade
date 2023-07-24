@@ -43,6 +43,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SkillDto'
+  /skill/del/{id}:
+    delete:
+      operationId: sse_gateway.delSkill
+      tags:
+        - SSE Services
+      summary: Delete an skill with given ID
+      description: Delete an skill with given ID
+      parameters:
+        - name: id
+          in: path
+          description: skill ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200": # status code
+          description: Delete an skill with given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillDto'              
   /skill-repositories/{id}:
     get:
       operationId: sse_gateway.getRepository
