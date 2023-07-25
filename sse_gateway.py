@@ -57,7 +57,7 @@ def getRepository(id):
         return ("Exception when calling Api-> %s\n" % e)
 
 
-def createRepository(id):
+def createRepository():
 
     try:
         # Get list of exposure types
