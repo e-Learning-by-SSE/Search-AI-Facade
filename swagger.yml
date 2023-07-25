@@ -196,6 +196,11 @@ paths:
                 $ref: '#/components/schemas/SkillDto'                            
 
 components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
   schemas:
     SkillRepositorySearchDto:
       type: object
@@ -213,7 +218,7 @@ components:
     SkillRepositoryDto:
       type: object
       properties:
-        ownerId:
+        owner:
           type: string
         id:
           type: string
@@ -226,7 +231,7 @@ components:
         version:
           type: string
       required:
-        - ownerId
+        - owner
         - id
         - name
     SkillRepositoryListDto:
@@ -241,7 +246,7 @@ components:
     UnresolvedSkillRepositoryDto:
       type: object
       properties:
-        ownerId:
+        owner:
           type: string
         id:
           type: string
@@ -258,7 +263,7 @@ components:
           items:
             type: string
       required:
-        - ownerId
+        - owner
         - id
         - name
         - skills
@@ -284,6 +289,8 @@ components:
           type: array
           items:
             type: string
+        repositoryId:
+          type: string
         name:
           type: string
         level:
@@ -293,6 +300,7 @@ components:
       required:
         - id
         - nestedSkills
+        - repositoryId
         - name
         - level
     SkillListDto:
@@ -417,6 +425,8 @@ components:
               - TEST
         language:
           type: string
+        resource:
+          type: string
         processingTime:
           type: string
         presenter:
@@ -426,6 +436,7 @@ components:
       required:
         - isTypeOf
         - language
+        - resource
         - processingTime
     NuggetDto:
       type: object
@@ -450,6 +461,8 @@ components:
               - TEST
         language:
           type: string
+        resource:
+          type: string
         processingTime:
           type: string
         presenter:
@@ -457,10 +470,11 @@ components:
         mediatype:
           type: string
         id:
-          type: number
+          type: string
       required:
         - isTypeOf
         - language
+        - resource
         - processingTime
         - id
     PathGoalDto:
@@ -552,17 +566,7 @@ components:
       type: object
       properties:
         searchId:
-          type: number
-        teachingGoals:
-          default: []
-          type: array
-          items:
-            type: string
-        requiredSkills:
-          default: []
-          type: array
-          items:
-            type: string
+          type: string
         processingTime:
           type: string
         rating:
@@ -589,16 +593,30 @@ components:
           type: string
         title:
           type: string
+        resource:
+          type: string
+          description: Should point to a resource (e.g. a website) which contains the learning unit.
         language:
           type: string
         description:
           type: string
+        teachingGoals:
+          default: []
+          type: array
+          items:
+            type: string
+        requiredSkills:
+          default: []
+          type: array
+          items:
+            type: string
       required:
         - searchId
+        - title
+        - resource
+        - language
         - teachingGoals
         - requiredSkills
-        - title
-        - language
     SearchLearningUnitListDto:
       type: object
       properties:
@@ -638,10 +656,204 @@ components:
           type: string
         title:
           type: string
+        resource:
+          type: string
+          description: Should point to a resource (e.g. a website) which contains the learning unit.
         language:
           type: string
         description:
           type: string
+        teachingGoals:
+          default: []
+          type: array
+          items:
+            type: string
+        requiredSkills:
+          default: []
+          type: array
+          items:
+            type: string
       required:
         - title
+        - resource
         - language
+        - teachingGoals
+        - requiredSkills
+    EdgeDto:
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: string
+      required:
+        - from
+        - to
+    NodeDto:
+      type: object
+      properties:
+        id:
+          type: string
+        metadata:
+          type: string
+      required:
+        - id
+        - metadata
+    GraphDto:
+      type: object
+      properties:
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdgeDto'
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeDto'
+      required:
+        - edges
+        - nodes
+    CheckGraphDto:
+      type: object
+      properties:
+        isAcyclic:
+          type: boolean
+      required:
+        - isAcyclic
+    PathDto:
+      type: object
+      properties:
+        luIDs:
+          type: array
+          items:
+            type: object
+      required:
+        - luIDs
+    UserCreationDto:
+      type: object
+      properties:
+        name:
+          type: string
+        companyId:
+          type: string
+      required:
+        - name
+        - companyId
+    UserDto:
+      type: object
+      properties:
+        name:
+          type: string
+        companyId:
+          type: string
+        id:
+          type: string
+      required:
+        - name
+        - companyId
+        - id
+    CompanyCreationDto:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    CompanyDto:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+      required:
+        - name
+        - id
+        - users
+    RoleGroupCreationDto:
+      type: object
+      properties:
+        name:
+          type: string
+        userId:
+          type: string
+      required:
+        - name
+        - userId
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        isTypeOf:
+          type: object
+      required:
+        - id
+        - isTypeOf
+    RoleGroupDto:
+      type: object
+      properties:
+        name:
+          type: string
+        userId:
+          type: string
+        id:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+      required:
+        - name
+        - userId
+        - id
+        - roles
+    LearningProfileCreationDto:
+      type: object
+      properties:
+        mediaType:
+          type: string
+          description: Used to validate that the user is the owner of the target repository.
+        language:
+          type: string
+        semanticDensity:
+          type: number
+        semanticGravity:
+          type: number
+        processingTimePerUnit:
+          type: string
+        userId:
+          type: string
+      required:
+        - userId
+    SkillProfileCreationDto:
+      type: object
+      properties:
+        jobHistory:
+          type: string
+          description: Used to validate that the user is the owner of the target repository.
+        professionalInterests:
+          type: string
+        userId:
+          type: string
+      required:
+        - userId
+    SkillProfileDto:
+      type: object
+      properties:
+        jobHistory:
+          type: string
+          description: Used to validate that the user is the owner of the target repository.
+        professionalInterests:
+          type: string
+        userId:
+          type: string
+        id:
+          type: string
+      required:
+        - userId
+        - id
