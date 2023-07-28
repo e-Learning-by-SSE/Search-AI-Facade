@@ -131,12 +131,17 @@ paths:
       tags:
         - SSE Services
   
-  /skill/create:
+  /skill/create/{repositoryId}:
     post:
       operationId: sse_gateway.createSkill
       summary: ''
       description: Creates a new skill  for the specified user.
-      parameters: []
+      parameters:
+        - name: repositoryId
+          required: true
+          in: path
+          schema:
+            type: string
       requestBody:
         required: true
         content:
