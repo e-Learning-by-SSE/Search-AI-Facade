@@ -6,6 +6,7 @@ import dataclasses
 import json
 from swagger_client_SSE.swagger_client.models.skill_dto import SkillDto
 from pprint import pprint
+from swagger_client_SSE.swagger_client.models.skill_repository_dto import SkillRepositoryDto
 from swagger_client_SSE.swagger_client.rest import ApiException
 
 configuration = sseClient.Configuration()
@@ -59,14 +60,16 @@ def getRepository(id):
 
 def createRepository():
 
+
+    repo_req_json = request.get_json()
+    print (repo_req_json)
     try:
         # Get list of exposure types
-        print(api_instance.api_client.configuration.host)
-        api_response = api_instance.skill_mgmt_controller_get_skill('1')
+        api_response = api_instance.skill_mgmt_controller_create_repository(repo_req_json)
         print(str(api_response))
-        d = SkillDto(id=api_response.id, nested_skills=api_response.nested_skills,
-                     name=api_response.name, level=api_response.level, description=api_response.description)
-        print(d.nested_skills)
+        d = SkillRepositoryDto(owner=api_response.owner, id=api_response.id,
+                     taxonomy=api_response.taxonomy, description=api_response.description, name=api_response.name, version=api_response.version)
+        
         response = jsonify(d.to_dict())
         response.status_code = 200  # or 400 or whatever
 

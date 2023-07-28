@@ -388,10 +388,6 @@ components:
           type: number
         description:
           type: string
-        parentSkills:
-          type: array
-          items:
-            $ref: '#/components/schemas/SkillCreationDto'
         nestedSkills:
           type: array
           items:
@@ -400,7 +396,6 @@ components:
         - owner
         - name
         - level
-        - parentSkills
         - nestedSkills
     NuggetCreationDto:
       type: object
