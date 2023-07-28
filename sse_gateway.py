@@ -81,16 +81,16 @@ def createRepository():
         return ("Exception when calling Api-> %s\n" % e)
 
 
-def createSkill(id):
-
+def createSkill():  
+    skill_req_json = request.get_json()
+    print (skill_req_json)
     try:
         # Get list of exposure types
-        print(api_instance.api_client.configuration.host)
-        api_response = api_instance.skill_mgmt_controller_get_skill('1')
+       
+        api_response = api_instance.skill_mgmt_controller_add_skill(skill_req_json, 1)
         print(str(api_response))
-        d = SkillDto(id=api_response.id, nested_skills=api_response.nested_skills,
+        d = SkillDto(id=api_response.id, nested_skills=api_response.nested_skills,repository_id=api_response.repository_id,
                      name=api_response.name, level=api_response.level, description=api_response.description)
-        print(d.nested_skills)
         response = jsonify(d.to_dict())
         response.status_code = 200  # or 400 or whatever
 
