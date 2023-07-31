@@ -95,7 +95,7 @@ paths:
       summary: Return all Repos by owner ID
       description: Return all Repos by owner ID
       parameters:
-        - name: id
+        - name: ownderId
           in: path
           description: Repo ID
           required: true
