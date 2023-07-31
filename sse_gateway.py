@@ -130,8 +130,8 @@ def getSkill(id):
         print(api_instance.api_client.configuration.host)
         api_response = api_instance.skill_mgmt_controller_get_skill(id)
         print(str(api_response))
-        d = SkillDto(id=api_response.id, nested_skills=api_response.nested_skills,
-                     name=api_response.name, level=api_response.level, description=api_response.description)
+        d = SkillDto(id=api_response.id, nested_skills=api_response.nested_skills,repository_id=api_response.repository_id,
+                     name=api_response.name, level=api_response.level, description=api_response.description, )
         print(d.nested_skills)
         response = jsonify(d.to_dict())
         response.status_code = 200  # or 400 or whatever
