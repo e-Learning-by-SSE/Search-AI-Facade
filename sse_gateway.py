@@ -90,7 +90,7 @@ def createQualification():
         d = QualificationDto( id=api_response.id,
                                name=api_response.name, year=api_response.year, user_id=api_response.user_id)
 
-        response = jsonify("")
+        response = jsonify(d)
         response.status_code = 200  # or 400 or whatever
         return response
 
