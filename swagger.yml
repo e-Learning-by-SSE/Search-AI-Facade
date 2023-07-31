@@ -100,7 +100,7 @@ paths:
           description: Repo ID
           required: true
           schema:
-            type: integer
+            type: string
             format: int64
       responses:
         "200": # status code

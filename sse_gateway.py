@@ -7,6 +7,7 @@ import json
 from swagger_client_SSE.swagger_client.models.skill_dto import SkillDto
 from pprint import pprint
 from swagger_client_SSE.swagger_client.models.skill_repository_dto import SkillRepositoryDto
+from swagger_client_SSE.swagger_client.models.skill_repository_list_dto import SkillRepositoryListDto
 from swagger_client_SSE.swagger_client.rest import ApiException
 
 configuration = sseClient.Configuration()
@@ -21,11 +22,10 @@ def getRepositoryByOwner(ownerId):
     try:
         # Get list of exposure types
         print(api_instance.api_client.configuration.host)
-        api_response = api_instance.skill_mgmt_controller_load_repository(
+        api_response = api_instance.skill_mgmt_controller_list_repositories(
             ownerId)
         print(str(api_response))
-        d = SkillRepositoryDto(owner=api_response.owner, id=api_response.id, taxonomy=api_response.taxonomy,
-                               description=api_response.description, name=api_response.name, version=api_response.version)
+        d = SkillRepositoryListDto(repositories=api_response.repositories)
         response = jsonify(d.to_dict())
         response.status_code = 200  # or 400 or whatever
         return response
