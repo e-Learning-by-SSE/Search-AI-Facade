@@ -126,11 +126,11 @@ paths:
                 $ref: '#/components/schemas/SkillRepositoryDto'
       tags:
         - SSE Services
-  /user/create:
+  /user/qualification/create:
     post:
-      operationId: sse_gateway.createUser
+      operationId: sse_gateway.createQualification
       summary: ''
-      description: Creates a new user.
+      description: Creates a new qualification for a user.
       parameters: []
       requestBody:
         required: true
@@ -144,7 +144,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SkillRepositoryDto'
+                $ref: '#/components/schemas/QualificationDto'
       tags:
         - SSE Services
   /skill/create/{repositoryId}:
