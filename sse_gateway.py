@@ -78,6 +78,28 @@ def createRepository():
 
         return ("Exception when calling Api-> %s\n" % e)
 
+def createUser():
+
+    repo_req_json = request.get_json()
+    print(repo_req_json)
+    try:
+        # Get list of exposure types
+        api_response = api_instance.skill_mgmt_controller_create_repository(
+            repo_req_json)
+        print(str(api_response))
+        d = SkillRepositoryDto(owner=api_response.owner, id=api_response.id,
+                               taxonomy=api_response.taxonomy, description=api_response.description, name=api_response.name, version=api_response.version)
+
+        response = jsonify(d.to_dict())
+        response.status_code = 200  # or 400 or whatever
+
+        print(response)
+        return response
+
+    except ApiException as e:
+
+        return ("Exception when calling Api-> %s\n" % e)
+
 
 def createSkill(repositoryId):
 

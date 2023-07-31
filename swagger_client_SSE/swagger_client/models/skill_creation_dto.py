@@ -32,7 +32,6 @@ class SkillCreationDto(object):
         'name': 'str',
         'level': 'float',
         'description': 'str',
-        'parent_skills': 'list[SkillCreationDto]',
         'nested_skills': 'list[SkillCreationDto]'
     }
 
@@ -41,17 +40,15 @@ class SkillCreationDto(object):
         'name': 'name',
         'level': 'level',
         'description': 'description',
-        'parent_skills': 'parentSkills',
         'nested_skills': 'nestedSkills'
     }
 
-    def __init__(self, owner=None, name=None, level=None, description=None, parent_skills=None, nested_skills=None):  # noqa: E501
+    def __init__(self, owner=None, name=None, level=None, description=None, nested_skills=None):  # noqa: E501
         """SkillCreationDto - a model defined in Swagger"""  # noqa: E501
         self._owner = None
         self._name = None
         self._level = None
         self._description = None
-        self._parent_skills = None
         self._nested_skills = None
         self.discriminator = None
         self.owner = owner
@@ -59,7 +56,6 @@ class SkillCreationDto(object):
         self.level = level
         if description is not None:
             self.description = description
-        self.parent_skills = parent_skills
         self.nested_skills = nested_skills
 
     @property
@@ -153,29 +149,6 @@ class SkillCreationDto(object):
         """
 
         self._description = description
-
-    @property
-    def parent_skills(self):
-        """Gets the parent_skills of this SkillCreationDto.  # noqa: E501
-
-
-        :return: The parent_skills of this SkillCreationDto.  # noqa: E501
-        :rtype: list[SkillCreationDto]
-        """
-        return self._parent_skills
-
-    @parent_skills.setter
-    def parent_skills(self, parent_skills):
-        """Sets the parent_skills of this SkillCreationDto.
-
-
-        :param parent_skills: The parent_skills of this SkillCreationDto.  # noqa: E501
-        :type: list[SkillCreationDto]
-        """
-        if parent_skills is None:
-            raise ValueError("Invalid value for `parent_skills`, must not be `None`")  # noqa: E501
-
-        self._parent_skills = parent_skills
 
     @property
     def nested_skills(self):

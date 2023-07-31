@@ -31,22 +31,25 @@ class SkillRepositoryCreationDto(object):
         'owner': 'str',
         'name': 'str',
         'description': 'str',
-        'version': 'str'
+        'version': 'str',
+        'access_rights': 'object'
     }
 
     attribute_map = {
         'owner': 'owner',
         'name': 'name',
         'description': 'description',
-        'version': 'version'
+        'version': 'version',
+        'access_rights': 'access_rights'
     }
 
-    def __init__(self, owner=None, name=None, description=None, version=None):  # noqa: E501
+    def __init__(self, owner=None, name=None, description=None, version=None, access_rights=None):  # noqa: E501
         """SkillRepositoryCreationDto - a model defined in Swagger"""  # noqa: E501
         self._owner = None
         self._name = None
         self._description = None
         self._version = None
+        self._access_rights = None
         self.discriminator = None
         self.owner = owner
         self.name = name
@@ -54,6 +57,8 @@ class SkillRepositoryCreationDto(object):
             self.description = description
         if version is not None:
             self.version = version
+        if access_rights is not None:
+            self.access_rights = access_rights
 
     @property
     def owner(self):
@@ -142,6 +147,27 @@ class SkillRepositoryCreationDto(object):
         """
 
         self._version = version
+
+    @property
+    def access_rights(self):
+        """Gets the access_rights of this SkillRepositoryCreationDto.  # noqa: E501
+
+
+        :return: The access_rights of this SkillRepositoryCreationDto.  # noqa: E501
+        :rtype: object
+        """
+        return self._access_rights
+
+    @access_rights.setter
+    def access_rights(self, access_rights):
+        """Sets the access_rights of this SkillRepositoryCreationDto.
+
+
+        :param access_rights: The access_rights of this SkillRepositoryCreationDto.  # noqa: E501
+        :type: object
+        """
+
+        self._access_rights = access_rights
 
     def to_dict(self):
         """Returns the model properties as a dict"""

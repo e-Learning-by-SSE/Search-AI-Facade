@@ -126,7 +126,27 @@ paths:
                 $ref: '#/components/schemas/SkillRepositoryDto'
       tags:
         - SSE Services
-  
+  /user/create:
+    post:
+      operationId: sse_gateway.createUser
+      summary: ''
+      description: Creates a new user.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QualificationCreationDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillRepositoryDto'
+      tags:
+        - SSE Services
   /skill/create/{repositoryId}:
     post:
       operationId: sse_gateway.createSkill
@@ -374,6 +394,8 @@ components:
           type: string
         version:
           type: string
+        access_rights:
+          type: object
       required:
         - owner
         - name
@@ -853,3 +875,37 @@ components:
       required:
         - userId
         - id
+    QualificationCreationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Used to validate that the user is the owner of the target repository.
+        name:
+          type: string
+        year:
+          type: number
+        userId:
+          type: string
+      required:
+        - id
+        - name
+        - year
+        - userId
+    QualificationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Used to validate that the user is the owner of the target repository.
+        name:
+          type: string
+        year:
+          type: number
+        userId:
+          type: string
+      required:
+        - id
+        - name
+        - year
+        - userId
