@@ -95,6 +95,13 @@ paths:
       summary: Return all Repos by owner ID
       description: Return all Repos by owner ID
       parameters:
+        - name: id
+          in: path
+          description: Repo ID
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         "200": # status code
           description: Return an Return all Repos  by owner ID
