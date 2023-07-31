@@ -87,8 +87,8 @@ def createQualification():
         api_response = user_api_instance.user_mgmt_controller_add_qualification(
             repo_req_json)
         print(str(api_response))
-        d = QualificationDto(owner=api_response.owner, id=api_response.id,
-                               taxonomy=api_response.taxonomy, description=api_response.description, name=api_response.name, version=api_response.version)
+        d = QualificationDto( id=api_response.id,
+                               name=api_response.name, year=api_response.year, user_id=api_response.user_id)
 
         response = jsonify("")
         response.status_code = 200  # or 400 or whatever
