@@ -78,8 +78,7 @@ paths:
           description: Repo ID
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200": # status code
           description: Return an repo with given ID
@@ -101,7 +100,6 @@ paths:
           required: true
           schema:
             type: string
-            format: int64
       responses:
         "200": # status code
           description: Return an Return all Repos  by owner ID
