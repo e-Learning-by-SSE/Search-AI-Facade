@@ -34,8 +34,7 @@ paths:
           description: skill ID
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200": # status code
           description: Return an skill with given ID
