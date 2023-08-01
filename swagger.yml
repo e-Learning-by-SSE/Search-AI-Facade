@@ -247,6 +247,8 @@ components:
           type: string
         description:
           type: string
+        access_rights:
+          type: object
         name:
           type: string
         version:
@@ -275,6 +277,8 @@ components:
           type: string
         description:
           type: string
+        access_rights:
+          type: object
         name:
           type: string
         version:
