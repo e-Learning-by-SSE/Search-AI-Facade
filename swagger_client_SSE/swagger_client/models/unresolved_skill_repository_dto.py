@@ -32,6 +32,7 @@ class UnresolvedSkillRepositoryDto(object):
         'id': 'str',
         'taxonomy': 'str',
         'description': 'str',
+        'access_rights': 'object',
         'name': 'str',
         'version': 'str',
         'skills': 'list[str]'
@@ -42,17 +43,19 @@ class UnresolvedSkillRepositoryDto(object):
         'id': 'id',
         'taxonomy': 'taxonomy',
         'description': 'description',
+        'access_rights': 'access_rights',
         'name': 'name',
         'version': 'version',
         'skills': 'skills'
     }
 
-    def __init__(self, owner=None, id=None, taxonomy=None, description=None, name=None, version=None, skills=None):  # noqa: E501
+    def __init__(self, owner=None, id=None, taxonomy=None, description=None, access_rights=None, name=None, version=None, skills=None):  # noqa: E501
         """UnresolvedSkillRepositoryDto - a model defined in Swagger"""  # noqa: E501
         self._owner = None
         self._id = None
         self._taxonomy = None
         self._description = None
+        self._access_rights = None
         self._name = None
         self._version = None
         self._skills = None
@@ -63,6 +66,8 @@ class UnresolvedSkillRepositoryDto(object):
             self.taxonomy = taxonomy
         if description is not None:
             self.description = description
+        if access_rights is not None:
+            self.access_rights = access_rights
         self.name = name
         if version is not None:
             self.version = version
@@ -155,6 +160,27 @@ class UnresolvedSkillRepositoryDto(object):
         """
 
         self._description = description
+
+    @property
+    def access_rights(self):
+        """Gets the access_rights of this UnresolvedSkillRepositoryDto.  # noqa: E501
+
+
+        :return: The access_rights of this UnresolvedSkillRepositoryDto.  # noqa: E501
+        :rtype: object
+        """
+        return self._access_rights
+
+    @access_rights.setter
+    def access_rights(self, access_rights):
+        """Sets the access_rights of this UnresolvedSkillRepositoryDto.
+
+
+        :param access_rights: The access_rights of this UnresolvedSkillRepositoryDto.  # noqa: E501
+        :type: object
+        """
+
+        self._access_rights = access_rights
 
     @property
     def name(self):
