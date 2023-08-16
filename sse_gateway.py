@@ -11,6 +11,7 @@ from swagger_client_SSE.swagger_client.models.skill_repository_dto import SkillR
 from swagger_client_SSE.swagger_client.models.skill_repository_list_dto import SkillRepositoryListDto
 from swagger_client_SSE.swagger_client.models.qualification_dto import QualificationDto
 from swagger_client_SSE.swagger_client.rest import ApiException
+import os
 
 configuration = sseClient.Configuration()
 configuration.host = os.getenv('SSE_SKILL_SERVICE')
