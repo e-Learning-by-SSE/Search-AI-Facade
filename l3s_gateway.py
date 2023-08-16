@@ -14,7 +14,7 @@ from swagger_client_L3S.swagger_client_1.rest import ApiException
 def testUP():
 
     configuration = l3SClient.Configuration()
-    configuration.host = 'https://staging.sse.uni-hildesheim.de:9040/api/v1'
+    configuration.host = os.getenv('L3S_GATEWAY')
     api_client = l3SClient.ApiClient(configuration=configuration)
     api_instance_up = l3SClient.UpstreamApi(api_client=api_client)
     
@@ -37,7 +37,7 @@ def testUP():
 def testDown():
 
     configuration = l3SClient.Configuration()
-    configuration.host = 'https://staging.sse.uni-hildesheim.de:9040/api/v1'
+    configuration.host = os.getenv('L3S_GATEWAY')
     api_client = l3SClient.ApiClient(configuration=configuration)
     
     api_instance_down = l3SClient.DownstreamApi(api_client=api_client)

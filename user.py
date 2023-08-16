@@ -16,7 +16,7 @@ USER_NOT_FOUND = "User not found for id: {}"
 def get(id):
 
     configuration = sseClient.Configuration()
-    configuration.host = 'https://staging.sse.uni-hildesheim.de:9010'
+    configuration.host = os.getenv('SSE_SKILL_SERVICE')
     api_client = sseClient.ApiClient(configuration=configuration)
     api_instance = sseClient.SkillApi(api_client=api_client)
     try:
@@ -54,7 +54,7 @@ def create():
 
 def getAll():
     configuration = l3SClient.Configuration()
-    configuration.host = 'https://staging.sse.uni-hildesheim.de:9040'
+    configuration.host = os.getenv('L3S_GATEWAY_HOST')
     api_client = l3SClient.ApiClient(configuration=configuration)
     api_instance = l3SClient.UpstreamApi(api_client=api_client)
     try:

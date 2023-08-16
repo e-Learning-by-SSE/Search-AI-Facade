@@ -37,7 +37,7 @@ pipeline {
                     // - https://stackoverflow.com/a/13245961
                     // - https://stackoverflow.com/a/51991389
                     // env.API_VERSION = sh(script: 'grep -Po "(?<=    version=\\").*(?=\\",)" setup.py', returnStdout: true).trim()
-                    env.API_VERSION = '0.0.1'
+                    env.API_VERSION = '0.0.2'
                     echo "API: ${env.API_VERSION}"
                     dockerImage = docker.build 'e-learning-by-sse/search-gateway-service'
                     docker.withRegistry('https://ghcr.io', 'github-ssejenkins') {
