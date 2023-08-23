@@ -28,7 +28,7 @@ class SkillRepositoryCreationDto(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'owner': 'str',
+        'owner_id': 'str',
         'name': 'str',
         'description': 'str',
         'version': 'str',
@@ -36,22 +36,22 @@ class SkillRepositoryCreationDto(object):
     }
 
     attribute_map = {
-        'owner': 'owner',
+        'owner_id': 'ownerId',
         'name': 'name',
         'description': 'description',
         'version': 'version',
         'access_rights': 'access_rights'
     }
 
-    def __init__(self, owner=None, name=None, description=None, version=None, access_rights=None):  # noqa: E501
+    def __init__(self, owner_id=None, name=None, description=None, version=None, access_rights=None):  # noqa: E501
         """SkillRepositoryCreationDto - a model defined in Swagger"""  # noqa: E501
-        self._owner = None
+        self._owner_id = None
         self._name = None
         self._description = None
         self._version = None
         self._access_rights = None
         self.discriminator = None
-        self.owner = owner
+        self.owner_id = owner_id
         self.name = name
         if description is not None:
             self.description = description
@@ -61,27 +61,27 @@ class SkillRepositoryCreationDto(object):
             self.access_rights = access_rights
 
     @property
-    def owner(self):
-        """Gets the owner of this SkillRepositoryCreationDto.  # noqa: E501
+    def owner_id(self):
+        """Gets the owner_id of this SkillRepositoryCreationDto.  # noqa: E501
 
 
-        :return: The owner of this SkillRepositoryCreationDto.  # noqa: E501
+        :return: The owner_id of this SkillRepositoryCreationDto.  # noqa: E501
         :rtype: str
         """
-        return self._owner
+        return self._owner_id
 
-    @owner.setter
-    def owner(self, owner):
-        """Sets the owner of this SkillRepositoryCreationDto.
+    @owner_id.setter
+    def owner_id(self, owner_id):
+        """Sets the owner_id of this SkillRepositoryCreationDto.
 
 
-        :param owner: The owner of this SkillRepositoryCreationDto.  # noqa: E501
+        :param owner_id: The owner_id of this SkillRepositoryCreationDto.  # noqa: E501
         :type: str
         """
-        if owner is None:
-            raise ValueError("Invalid value for `owner`, must not be `None`")  # noqa: E501
+        if owner_id is None:
+            raise ValueError("Invalid value for `owner_id`, must not be `None`")  # noqa: E501
 
-        self._owner = owner
+        self._owner_id = owner_id
 
     @property
     def name(self):

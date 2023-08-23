@@ -45,9 +45,6 @@ from swagger_client.models.qualification_dto import QualificationDto
 from swagger_client.models.resolved_skill_dto import ResolvedSkillDto
 from swagger_client.models.resolved_skill_list_dto import ResolvedSkillListDto
 from swagger_client.models.resolved_skill_repository_dto import ResolvedSkillRepositoryDto
-from swagger_client.models.role_dto import RoleDto
-from swagger_client.models.role_group_creation_dto import RoleGroupCreationDto
-from swagger_client.models.role_group_dto import RoleGroupDto
 from swagger_client.models.search_learning_unit_creation_dto import SearchLearningUnitCreationDto
 from swagger_client.models.search_learning_unit_dto import SearchLearningUnitDto
 from swagger_client.models.search_learning_unit_list_dto import SearchLearningUnitListDto

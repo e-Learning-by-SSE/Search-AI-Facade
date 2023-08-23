@@ -46,7 +46,8 @@ class UserDto(object):
         self._id = None
         self.discriminator = None
         self.name = name
-        self.company_id = company_id
+        if company_id is not None:
+            self.company_id = company_id
         self.id = id
 
     @property
@@ -90,8 +91,6 @@ class UserDto(object):
         :param company_id: The company_id of this UserDto.  # noqa: E501
         :type: str
         """
-        if company_id is None:
-            raise ValueError("Invalid value for `company_id`, must not be `None`")  # noqa: E501
 
         self._company_id = company_id
 

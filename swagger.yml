@@ -390,7 +390,7 @@ components:
     SkillRepositoryCreationDto:
       type: object
       properties:
-        owner:
+        ownerId:
           type: string
         name:
           type: string
@@ -401,7 +401,7 @@ components:
         access_rights:
           type: object
       required:
-        - owner
+        - ownerId
         - name
     SkillCreationDto:
       type: object
@@ -760,7 +760,6 @@ components:
           type: string
       required:
         - name
-        - companyId
     UserDto:
       type: object
       properties:
@@ -772,7 +771,6 @@ components:
           type: string
       required:
         - name
-        - companyId
         - id
     CompanyCreationDto:
       type: object
@@ -796,44 +794,6 @@ components:
         - name
         - id
         - users
-    RoleGroupCreationDto:
-      type: object
-      properties:
-        name:
-          type: string
-        userId:
-          type: string
-      required:
-        - name
-        - userId
-    RoleDto:
-      type: object
-      properties:
-        id:
-          type: string
-        isTypeOf:
-          type: object
-      required:
-        - id
-        - isTypeOf
-    RoleGroupDto:
-      type: object
-      properties:
-        name:
-          type: string
-        userId:
-          type: string
-        id:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleDto'
-      required:
-        - name
-        - userId
-        - id
-        - roles
     LearningProfileCreationDto:
       type: object
       properties:
