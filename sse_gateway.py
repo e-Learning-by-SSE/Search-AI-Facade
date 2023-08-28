@@ -172,10 +172,7 @@ def delSkill(id):
    
         api_response = api_instance.skill_mgmt_controller_delte_skill(id)
    
-        d = SkillDto(id=api_response.id, nested_skills=api_response.nested_skills,
-                     name=api_response.name, level=api_response.level, description=api_response.description)
-   
-        response = jsonify(d.to_dict())
+        response = jsonify(api_response)
         response.status_code = 200  # or 400 or whatever
 
         print(response)
