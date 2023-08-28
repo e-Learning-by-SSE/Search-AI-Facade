@@ -170,7 +170,7 @@ def delSkill(id):
     try:
         # Get list of exposure types
    
-        api_response = api_instance.skill_mgmt_controller_get_skill(id)
+        api_response = api_instance.skill_mgmt_controller_delte_skill(id)
    
         d = SkillDto(id=api_response.id, nested_skills=api_response.nested_skills,
                      name=api_response.name, level=api_response.level, description=api_response.description)
