@@ -63,7 +63,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SkillDto'              
-  /skill-repositories/{id}:
+  /skill-repositories/byid/{id}:
     get:
       operationId: sse_gateway.getRepository
       tags:
@@ -84,7 +84,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UnresolvedSkillRepositoryDto'
-  /skill-repositories/{ownderId}:
+  /skill-repositories/byowner{ownerId}:
     get:
       operationId: sse_gateway.getRepositoryByOwner
       tags:
@@ -92,7 +92,7 @@ paths:
       summary: Return all Repos by owner ID
       description: Return all Repos by owner ID
       parameters:
-        - name: ownderId
+        - name: ownerId
           in: path
           description: Repo ID
           required: true

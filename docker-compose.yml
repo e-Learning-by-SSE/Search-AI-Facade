@@ -2,7 +2,7 @@ services:
     web:
         build: .
         ports:
-            - "3002:3002"
+            - "3001:3001"
         volumes:
             - .:/code
         environment:

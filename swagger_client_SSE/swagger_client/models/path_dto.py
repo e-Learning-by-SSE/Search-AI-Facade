@@ -28,7 +28,7 @@ class PathDto(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'lu_ids': 'list[object]'
+        'lu_ids': 'list[str]'
     }
 
     attribute_map = {
@@ -47,7 +47,7 @@ class PathDto(object):
 
 
         :return: The lu_ids of this PathDto.  # noqa: E501
-        :rtype: list[object]
+        :rtype: list[str]
         """
         return self._lu_ids
 
@@ -57,7 +57,7 @@ class PathDto(object):
 
 
         :param lu_ids: The lu_ids of this PathDto.  # noqa: E501
-        :type: list[object]
+        :type: list[str]
         """
         if lu_ids is None:
             raise ValueError("Invalid value for `lu_ids`, must not be `None`")  # noqa: E501
