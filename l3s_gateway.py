@@ -1,10 +1,10 @@
 
 from flask import jsonify, request
 
-from swagger_client_L3S import swagger_client_1 as l3SClient
+from swagger_client_L3S import l3s_client as l3SClient
 import dataclasses, json
 from pprint import pprint
-from swagger_client_L3S.swagger_client_1.rest import ApiException
+from swagger_client_L3S.l3s_client.rest import ApiException
 import os
 
 
