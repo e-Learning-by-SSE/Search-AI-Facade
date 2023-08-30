@@ -1,10 +1,11 @@
 
 from flask import jsonify, request
 
-from swagger_client_L3S import l3s_client as l3SClient
+from swagger_client_L3S import l3s_swagger_client as l3SClient
+from swagger_client_L3S import l3s_search_swagger_client as l3SSearchClient
 import dataclasses, json
 from pprint import pprint
-from swagger_client_L3S.l3s_client.rest import ApiException
+from swagger_client_L3S.l3s_swagger_client.rest import ApiException
 import os
 
 
@@ -18,6 +19,10 @@ def testUP():
     configuration.host = os.getenv('L3S_GATEWAY')
     api_client = l3SClient.ApiClient(configuration=configuration)
     api_instance_up = l3SClient.UpstreamApi(api_client=api_client)
+
+    configuration = l3SSearchClient.Configuration()
+    configuration.host = os.getenv('L3S_GATEWAY')
+    api_client = l3SSearchClient.ApiClient(configuration=configuration)
     
     try:
     # Get list of exposure types
