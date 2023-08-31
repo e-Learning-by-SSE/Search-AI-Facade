@@ -80,6 +80,46 @@ def createRepository():
 
         return ("Exception when calling Api-> %s\n" % e)
 
+def adaptRepository():
+
+    repo_req_json = request.get_json()
+    print(repo_req_json)
+    try:
+        # Get list of exposure types
+        api_response = api_instance.skill_mgmt_controller_adapt_repo(
+            repo_req_json)
+        
+        response = jsonify(api_response)
+        response.status_code = 200  # or 400 or whatever
+
+        
+        return response
+
+    except ApiException as e:
+
+        return ("Exception when calling Api-> %s\n" % e)
+
+
+def deleteRepository(repositoryId):
+
+   
+   
+    try:
+        # Get list of exposure types
+        api_response = api_instance.skill_mgmt_controller_delete_repo(
+            repositoryId)
+        
+        response = jsonify(api_response)
+        response.status_code = 200  # or 400 or whatever
+
+        print(response)
+        return response
+
+    except ApiException as e:
+
+        return ("Exception when calling Api-> %s\n" % e)
+
+
 def createQualification():
 
     repo_req_json = request.get_json()

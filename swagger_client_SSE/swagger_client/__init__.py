@@ -40,6 +40,7 @@ from swagger_client.models.nugget_dto import NuggetDto
 from swagger_client.models.path_dto import PathDto
 from swagger_client.models.path_goal_creation_dto import PathGoalCreationDto
 from swagger_client.models.path_goal_dto import PathGoalDto
+from swagger_client.models.path_request_dto import PathRequestDto
 from swagger_client.models.qualification_creation_dto import QualificationCreationDto
 from swagger_client.models.qualification_dto import QualificationDto
 from swagger_client.models.resolved_skill_dto import ResolvedSkillDto
