@@ -3,7 +3,7 @@ from ma import ma
 
 import connexion
 
-connex_app = connexion.App("__name__",specification_dir='./')
+connex_app = connexion.App("__Search_Gateway__",specification_dir='./')
 connex_app.add_api('swagger.yml')
 
 app = connex_app.app

@@ -6,3 +6,5 @@ marshmallow
 connexion[swagger-ui]
 flask_marshmallow
 six 
+unittest-xml-reporting
+shutil

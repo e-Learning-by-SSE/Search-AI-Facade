@@ -84,7 +84,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UnresolvedSkillRepositoryDto'
-  /skill-repositories/byowner{ownerId}:
+  /skill-repositories/byowner/{ownerId}:
     get:
       operationId: sse_gateway.getRepositoryByOwner
       tags:
@@ -105,7 +105,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SkillRepositoryListDto'
-  /skill-repositories/delete{repositoryId}:
+  /skill-repositories/delete/{repositoryId}:
     delete:
       operationId: sse_gateway.deleteRepository
       tags:
