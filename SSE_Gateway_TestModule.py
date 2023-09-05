@@ -32,11 +32,6 @@ class SSE_Gateway_TestModule(unittest.TestCase):
     def setUp(self):
 
         self.app = app
-        with self.app.app_context():
-            # within this block, current_app points to app.
-
-            print(self.app.name)
-
         self.client = self.app.test_client()
         self.app_context = self.app.app_context()
         self.app_context.push()
@@ -93,13 +88,8 @@ class SSE_Gateway_TestModule(unittest.TestCase):
 
     @patch('sse_gateway.api_instance.skill_mgmt_controller_add_skill')
     def test_create_skill(self, skill_data):
-        print('test_create_skill')
 
-        # Define a mock response for the add_skill call
-
-        # Configure the mock to return the mock_response when add_skill is called
-
-        # Define the skill data to be passed to createSkill
+        # Define the skill data to be passed to skill_mgmt_controller_add_skill
         skill_data: SkillCreationDto = {
             "owner": "1",
             "name": "11t22311111",
@@ -109,14 +99,10 @@ class SSE_Gateway_TestModule(unittest.TestCase):
             ]
         }
 
-        # Call the createSkill function with the skill data
        
         api_response : SkillDto = self.api_instance.skill_mgmt_controller_add_skill(
             skill_data, '1')
-       
-        print(api_response)
-        # Assert that the function returns a JSON response with the expected data
-      
+    
         expected_data = {
             "name": "11t22311111",
             "level": 0,
@@ -124,8 +110,6 @@ class SSE_Gateway_TestModule(unittest.TestCase):
             "nestedSkills": [],
             "repositoryId": "1"
         }
-        
-        print(expected_data)
         self.assertEqual(api_response.name,expected_data['name'] )
         self.assertEqual(api_response.level, expected_data['level'])
 
@@ -136,7 +120,6 @@ def pre_process(output_directory):
     if not isExist:
        # Create a new directory because it does not exist
         os.makedirs(output_directory)
-    print("The new directory is created!")
 
 
 def post_process(output_directory):
@@ -158,10 +141,8 @@ def post_process(output_directory):
 
 
 if __name__ == '__main__':
-    print('main')
     output_directory = './test/'
     pre_process(output_directory)
-    # Create a test suite with your test class
     test_suite = unittest.TestLoader().loadTestsFromTestCase(SSE_Gateway_TestModule)
 
     xmlrunner.XMLTestRunner(output=output_directory,
