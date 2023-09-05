@@ -13,7 +13,7 @@ from swagger_client_SSE.swagger_client.models.qualification_dto import Qualifica
 from swagger_client_SSE.swagger_client.rest import ApiException
 import os
 configuration = sseClient.Configuration()
-configuration.host = os.getenv('SSE_SKILL_SERVICE')
+configuration.host = os.getenv('SSE_SKILL_SERVICE', 'https://staging.sse.uni-hildesheim.de:9011')
 api_client = sseClient.ApiClient(configuration=configuration)
 api_instance = sseClient.SkillApi(api_client=api_client)
 lu_api_instance = sseClient.LearningUnitApi(api_client=api_client)
