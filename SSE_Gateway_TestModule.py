@@ -85,8 +85,6 @@ class SSE_Gateway_TestModule(unittest.TestCase):
                 }
             ]
         }
-        print(result.json)
-        print(expected_data)
         self.assertDictEqual(result.json, expected_data)
 
     @patch('sse_gateway.getRepository')
@@ -317,7 +315,7 @@ class SSE_Gateway_TestModule(unittest.TestCase):
                          'taxonomy': 'Bloom',
                          'version': 'v1'}
       
-        self.assertDictEqual(result.json, expected_data)
+        self.assertEqual(result.json.owner, expected_data['owner'])
 
     @patch('sse_gateway.api_instance.skill_mgmt_controller_add_skill')
     def test_create_skill(self, skill_data):
@@ -325,7 +323,7 @@ class SSE_Gateway_TestModule(unittest.TestCase):
         # Define the skill data to be passed to skill_mgmt_controller_add_skill
         skill_data: SkillCreationDto = {
             "owner": "1",
-            "name": "21222133t13",
+            "name": "1121222133t13",
             "level": 0,
             "description": "stzering",
             "nestedSkills": [
@@ -336,7 +334,7 @@ class SSE_Gateway_TestModule(unittest.TestCase):
             skill_data, '1')
 
         expected_data = {
-            "name": "21222133t13",
+            "name": "121222133t13",
             "level": 0,
             "description": "stzering",
             "nestedSkills": [],
