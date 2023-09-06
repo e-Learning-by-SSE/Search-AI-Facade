@@ -42,7 +42,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SkillDto'
-  /skill/del/{id}:
+  /skill/{id}/del:
     delete:
       operationId: sse_gateway.delSkill
       tags:
@@ -62,8 +62,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SkillDto'              
-  /skill-repositories/byid/{id}:
+                $ref: '#/components/schemas/SkillDto'   
+
+  /skill/{skillId}/adapt:
+    put:
+      operationId: sse_gateway.adaptSkill
+      summary: 'Adapts a skill'
+      description: Adapts a skill .
+      parameters:
+        - name: skillId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkillCreationDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillDto'
+      tags:
+        - SSE Services 
+
+  /skill-repositories/byid/{repositoryId}:
     get:
       operationId: sse_gateway.getRepository
       tags:
@@ -71,7 +99,7 @@ paths:
       summary: Return an Repo with given ID
       description: Return an Repo with given ID
       parameters:
-        - name: id
+        - name: repositoryId
           in: path
           description: Repo ID
           required: true
@@ -105,7 +133,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SkillRepositoryListDto'
-  /skill-repositories/delete/{repositoryId}:
+  /skill-repositories/{repoId}/del:
     delete:
       operationId: sse_gateway.deleteRepository
       tags:
@@ -113,7 +141,7 @@ paths:
       summary: Delete a Repository by ID
       description: Return deleted Repo or Error message 
       parameters:
-        - name: repositoryId
+        - name: repoId
           in: path
           description: Repo ID
           required: true
@@ -129,7 +157,7 @@ paths:
   /skill-repositories/create:
     post:
       operationId: sse_gateway.createRepository
-      summary: ''
+      summary: 'Creates ne Skill Repo'
       description: Creates a new skill repository for the specified user.
       parameters: []
       requestBody:
@@ -147,10 +175,10 @@ paths:
                 $ref: '#/components/schemas/SkillRepositoryDto'
       tags:
         - SSE Services  
-  /skill-repositories/adapt:
-    post:
+  /skill-repositories/:
+    put:
       operationId: sse_gateway.adaptRepository
-      summary: ''
+      summary: 'adapts a skill repository'
       description: adapts a skill repository.
       parameters: []
       requestBody:
@@ -160,7 +188,7 @@ paths:
             schema:
               $ref: '#/components/schemas/SkillRepositoryDto'
       responses:
-        '201':
+        '201':  
           description: ''
           content:
             application/json:
@@ -190,17 +218,11 @@ paths:
                 $ref: '#/components/schemas/QualificationDto'
       tags:
         - SSE Services
-  /skill/create/{repositoryId}:
+  /skill/:
     post:
       operationId: sse_gateway.createSkill
-      summary: ''
-      description: Creates a new skill  for the specified user.
-      parameters:
-        - name: repositoryId
-          required: true
-          in: path
-          schema:
-            type: string
+      summary: 'adapts a skill'
+      description: adapts a skill.
       requestBody:
         required: true
         content:

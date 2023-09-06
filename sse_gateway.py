@@ -162,6 +162,28 @@ def createSkill(repositoryId):
 
         return ("Exception when calling Api-> %s\n" % e)
 
+def adaptSkill(skillId):
+
+    skill_req_json = request.get_json()
+    print(skill_req_json)
+    try:
+        # Get list of exposure types
+
+        api_response = api_instance.skill_mgmt_controller_adapt_skill(
+            skill_req_json, skillId)
+        print(str(api_response))
+        d = SkillDto(id=api_response.id, nested_skills=api_response.nested_skills, repository_id=api_response.repository_id,
+                     name=api_response.name, level=api_response.level, description=api_response.description)
+        response = jsonify(d.to_dict())
+        response.status_code = 200  # or 400 or whatever
+
+        print(response)
+        return response
+
+    except ApiException as e:
+
+        return ("Exception when calling Api-> %s\n" % e)
+
 
 def findSkill(id):
 
